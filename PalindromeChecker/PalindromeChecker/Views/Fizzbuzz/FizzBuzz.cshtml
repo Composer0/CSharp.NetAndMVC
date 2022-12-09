@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@*@model PalindromeChecker.Models.Fizzbuzz*@
+
+<div class="container col-xxl-8 px-4 py-5 mt-5">
+    <div class="row gy-2 h-100 row-cols-md-2 row-cols-1">
+        <div class="col border-2 border-end">
+            <h1 class="font-weight-bold 1h-1 mb-3">FizzBuzz</h1>
+            <h4 class="lead">
+                This application will consider the two numbers entered and for                      each number between 1 and 1--. 
+                 It will print FIZZ for the numbers that are divisible by the                       first number. 
+                 Buzz will be printed for the numbers divisible by the second                       number. 
+                 FIZZBUZZ for the numbers divisible by both and simply print the                    number if it is not divisible by either.
+            </h4>
+
+            <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+            <p>
+                Enter 2 numbers. The first number will be used to evaluate Fizz. 
+                The second number will be used to evaluate Buzz and FizzBuzz will                   be determined based on the combination of the two numbers.
+            </p>
+        </div>
+        <div class="col">
+            <div>
+                <h5>Enter numbers</h5>
+
+                @*Form*@
+                <form asp-controller="home" asp-actions="FizzBuzz" method="post">
+                    <div class="form-group">
+                        <label asp-for="FizzValue">Fizz Value</label>
+                        <input 
+                            type="number" 
+                            asp-for="FizzValue" 
+                            class="form-control" 
+                            placeholder="Enter Fizz" 
+                            value="@Model.FizzValue" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BuzzValue">Buzz Value</label>
+                        <input 
+                            type="number" 
+                            asp-for="BuzzValue" 
+                            class="form-control" 
+                            placeholder="Enter Fizz" 
+                            value="@Model.BuzzValue" />
+                    </div>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+
+
+                <h2 class="mt-5 border-bottom border-2">Results</h2>
+                <div class="table-responsive">
+
+                @*Table*@
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
