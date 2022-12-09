@@ -32,9 +32,14 @@ namespace PalindromeChecker.Controllers
         [HttpGet]
         public IActionResult FizzBuzz()
         {
+            FizzBuzz model = new();
             // model = new();
             //above is how to create a new instance
-            return View();
+            model.FizzValue = 3;
+            model.BuzzValue = 5;
+            //The above allows these pieces of data to be shown on the View()... display page. These are the default values rather than 0.
+
+            return View(model);
             //model is able to be inserted into the view now.
         }
 
