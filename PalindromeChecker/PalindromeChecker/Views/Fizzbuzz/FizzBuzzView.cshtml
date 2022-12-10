@@ -28,7 +28,7 @@
                 <h5>Enter numbers</h5>
 
                 @*Form*@
-                <form asp-controller="home" asp-actions="FizzBuzz" method="post">
+                <form asp-controller="Fizzbuzz" asp-actions="FizzBuzzView" method="post">
                     <div class="form-group">
                         <label asp-for="FizzValue">Fizz Value</label>
                         <input 
@@ -55,7 +55,26 @@
                 <div class="table-responsive">
 
                 @*Table*@
-                    
+                @if (Model.Result.Count > 0)
+                {
+                    <table class="table-striped table-hover table table-dark">
+                        <thread>
+                            <tr><th colspan="5">Fizz Buzz Results</th></tr>
+                        </thread>
+                        @for (int i = 0; i < Model.Result.Count(); i+= 5)
+                        {
+                            <tr>
+                                <td>@Model.Result[i]</td>
+                                <td>@Model.Result[i+1]</td>
+                                <td>@Model.Result[i+2]</td>
+                                <td>@Model.Result[i+3]</td>
+                                <td>@Model.Result[i+4]</td>
+                            </tr>
+                        }      
+                    </table>
+                }
+                      @*The purpose of this for loop is to create a table of data. Notice that                        the loop increments by 5. It will add a new row to display the next 5                           items of the generated result.*@
+                      @*Brackets must surround the what is being manipulated from the control statement in order to run the logic of the application as intended. *@
                 </div>
             </div>
         </div>

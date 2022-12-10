@@ -355,3 +355,4 @@ C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Relea
 C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Release\net5.0\PalindromeChecker.genruntimeconfig.cache
 C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Release\net5.0\ref\PalindromeChecker.dll
 C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Release\net5.0\Razor\Views\Palindrome\Reverse.cshtml.g.cs
+C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Release\net5.0\Razor\Views\Fizzbuzz\FizzBuzzView.cshtml.g.cs
