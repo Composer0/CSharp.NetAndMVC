@@ -21,16 +21,6 @@ namespace PalindromeChecker.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult FizzBuzzView()
         {

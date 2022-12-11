@@ -356,3 +356,4 @@ C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Debug
 C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Debug\net5.0\ref\PalindromeChecker.dll
 C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Debug\net5.0\Razor\Views\Palindrome\Reverse.cshtml.g.cs
 C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Debug\net5.0\Razor\Views\Fizzbuzz\FizzBuzzView.cshtml.g.cs
+C:\Users\compo\Desktop\BootCamp\C#\PalindromeChecker\PalindromeChecker\obj\Debug\net5.0\Razor\Views\Loancalculator\Calculator.cshtml.g.cs
