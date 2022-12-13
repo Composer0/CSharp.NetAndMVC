@@ -26,9 +26,16 @@ namespace PalindromeChecker.Controllers
         [HttpGet]
         public IActionResult Calculator()
         {
-            Loan model = new();
+            Loan loan = new();
 
-            return View(model);
+            loan.Payment = 0.0m;
+            loan.TotalInterest = 0.0m;
+            loan.TotalCost = 0.0m;
+            loan.Rate = 3.5m;
+            loan.LoanAmount = 150000m;
+            loan.Term = 60;
+
+            return View(loan);
  
         }
        
