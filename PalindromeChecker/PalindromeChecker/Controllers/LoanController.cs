@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using PalindromeChecker.Helpers;
 
 
 //to link to folders each time the first public class should be named after the folder of the view. When being stated again for the ILogger it should be referred to the same way. You do not need a model and HttpGet in order to have the View displayed.
@@ -38,7 +39,22 @@ namespace PalindromeChecker.Controllers
             return View(loan);
  
         }
-       
-        }
+        //Indicating what the action is doing will allow the two Action to share the same name.
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Calculator(Loan loan)
+        {
+            //Calculate the loan.... and get the payments.
 
-    }
+            var loanHelper = new LoanHelper();
+
+            Loan newLoan = loanHelper.GetPayments(loan);
+            //private classes are not visible to the caller... only public.
+             
+
+
+            return View(newLoan);
+        }
+     }
+
+}
