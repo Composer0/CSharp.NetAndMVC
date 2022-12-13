@@ -58,10 +58,10 @@ namespace PalindromeChecker.Helpers
 
         private decimal CalcPayment(decimal amount, decimal rate, int term)
         {
-
+            
             var monthlyRate = CalcMonthlyRate(rate);
             //var allows us to pull the type from the model so that we don't have to restate it. It is not the same as JavaScript.
-            var rateD = Convert.ToDouble(rate);
+            var rateD = Convert.ToDouble(monthlyRate);
             var amountD = Convert.ToDouble(amount);
 
             var paymentD = (amountD * rateD) / (1 - Math.Pow(1 + rateD, -term));

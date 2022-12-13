@@ -24,7 +24,7 @@
                         asp-for="LoanAmount" />
                 </div>
                 <div class="form-group col-12">
-                    <label asp-for="Term">Term:</label>
+                    <label asp-for="Term">Term (in Months):</label>
                     <input type="number" 
                         class="form-control" 
                         id="lterm" min="1" 
@@ -101,8 +101,8 @@
                             <td>@item.Month</td>
                             <td>@item.Payment.ToString("C")</td>
                             @*C turns the ToString to a currency.*@
-                            <td>@item.MonthlyPrincipal.ToString("C")</td>
                             <td>@item.MonthlyInterest.ToString("C")</td>
+                            <td>@item.MonthlyPrincipal.ToString("C")</td>
                             <td>@item.TotalInterest.ToString("C")</td>
                             <td>@item.Balance.ToString("C")</td>
                         </tr>
