@@ -22,3 +22,45 @@ h1 {
 main {
     padding-top: 6rem;
 }
+
+
+/*----------- Loan Form Styles ---------*/
+.loanForm {
+    background-color: rgb(233,231,231);
+}
+
+.loanForm input {
+    width: 100%;
+    padding: .5rem;
+}
+
+.loanForm button {
+    float: right;
+}
+
+#paymentTitle {
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.btn:focus{
+    box-shadow: none;
+}
+
+.btn {
+    background-color: #ffffff;
+}
+
+.btn-cfOrange {
+    color: #2b404f;
+    border: 2px solid #ff993b;
+    transition: all .2s ease-in-out;
+}
+
+.btn-cfOrange:hover {
+    background-color: #ff993b;
+    color: #212121;
+}
+
+
