@@ -18,6 +18,6 @@ namespace ContactPro.Models
         public string? LastName { get; set; }
 
         [NotMapped]
-        public string? FullName { get { return $"{FirstName}{LastName}"; } } // Similar to JavaScript $`... interpolates into document.
+        public string? FullName { get { return $"{FirstName} {LastName}"; } } // Similar to JavaScript $`... interpolates into document.
     }
 }
