@@ -19,3 +19,8 @@ The main steps that have occurred over the past two days have included:
 - enforce a maximum and minimum lengths
 - add a NotMapped property
 - add a new migration and update the database
+- add new scaffolded items
+- update the registration view to include first and last names
+- handle a connection string error
+- handle a layout page error
+- register a new user and login
