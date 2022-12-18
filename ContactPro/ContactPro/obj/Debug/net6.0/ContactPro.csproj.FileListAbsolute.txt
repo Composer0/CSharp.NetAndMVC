@@ -274,3 +274,4 @@ C:\Users\compo\Desktop\BootCamp\C#\ContactPro\ContactPro\bin\Debug\net6.0\runtim
 C:\Users\compo\Desktop\BootCamp\C#\ContactPro\ContactPro\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\compo\Desktop\BootCamp\C#\ContactPro\ContactPro\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\compo\Desktop\BootCamp\C#\ContactPro\ContactPro\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\compo\Desktop\BootCamp\C#\ContactPro\ContactPro\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutLander.cshtml.rz.scp.css
