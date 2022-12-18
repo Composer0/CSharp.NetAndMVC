@@ -10,7 +10,7 @@ https://orionpalmer-csharp-dsa.azurewebsites.net/
 This application uses the MVC design model and applied it to my writing in C#. These projects primarily operate using 'For' loops to filter through the data to check and modify the values. Within this applciation is Palindrome Checker, FizzBuzz Finder, and my Loan Calculator. Web app was published on the Microsoft Azure hosting service.
 
 ## Week 3
-### Six Degrees
+### Project Name: Six Degrees
 
 Learning how to use .Net 6 and PostgreSQL while building a Contact Manager Applicaiton.
 The main steps that have occurred over the past two days have included: 
