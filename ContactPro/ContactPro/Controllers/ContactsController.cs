@@ -9,16 +9,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using ContactPro.Data;
 using ContactPro.Models;
+using ContactPro.Enums;
 
 namespace ContactPro.Controllers
 {
     public class ContactsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager; //the underscore is a naming convention that helps identify a variable as being private.
 
-        public ContactsController(ApplicationDbContext context)
+        public ContactsController(ApplicationDbContext context, UserManager<AppUser> userManager) //injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Contacts
@@ -54,6 +57,9 @@ namespace ContactPro.Controllers
         public IActionResult Create()
         {
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["StatesList"] = new SelectList(Enum.GetValues(typeof(States)).Cast<States>().ToList());
+            //Cast simply takes the result<States> and tells the States that they will be converted into a list. This is where our result/states will be stored.
+            //A smarter explanation: The Cast<TResult>(IEnumerable) method enables the standard query operators to be invoked on non-generic collections by supplying the necessary type information. 
             return View();
         }
 
@@ -62,16 +68,26 @@ namespace ContactPro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AppUserId,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created,ImageData,ImageType")] Contact contact)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,ImageFile")] Contact contact)
         {
+            ModelState.Remove("AppUserId");
             if (ModelState.IsValid)
             {
+                contact.AppUserId = _userManager.GetUserId(User);
+                contact.Created = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc); //When is Now. UTC is universal time code.
+
+                if (contact.BirthDate != null)
+                {
+                    contact.BirthDate = DateTime.SpecifyKind(contact.BirthDate.Value, DateTimeKind.Utc); //SpecifyKind... first is what we want to convert. the 2nd is the information we are using. We are using the DateTimeKind.Utc taken in when created to create a Birthdate Value. This is all shared through the contact itself as the DateTimeKind.Utc was previously passed through to it when created with the AppUserId behind the scenes.
+                }
+
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id", contact.AppUserId);
-            return View(contact);
+            
+            return RedirectToAction(nameof(Index)); //Takes us back to the list page instead of keeping us on the edit page.
+     
         }
 
         // GET: Contacts/Edit/5
@@ -97,12 +113,13 @@ namespace ContactPro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AppUserId,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created,ImageData,ImageType")] Contact contact)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,ImageFile")] Contact contact) //This was edited to reflect what was being taken in from the form.
         {
             if (id != contact.Id)
             {
                 return NotFound();
             }
+
 
             if (ModelState.IsValid)
             {

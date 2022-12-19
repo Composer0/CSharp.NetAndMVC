@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
- <h1>EDIT CONTACT</h1>
+ <h1>CREATE CONTACT</h1>
  <div class="p-3 border border-2 shadow-lg bg-light">
      <form asp-action="Create" asp-controller="Contacts" enctype="multipart/form-data">
          @*asp-controller makes user it goes to the proper controller. Encode Type multipart/form-data ensures that this page supports uploads.*@
@@ -71,7 +71,8 @@
                             </div>
                             <div class="col-12 col-lg-4 mt-2">
                                 <label asp-for="State" class="control-label"></label>
-                                <select asp-for="State" class="form-control"></select>
+                                <select asp-for="State" asp-items="ViewBag.StatesList" class="form-control"></select>
+                                @*ViewBag concept. This is where our tools are found that we create for list of other objects. The server will not know what is in the bag or being referenced until it is rerendered. Keep this in mind in the future when creating new ViewBags and applying changes. StatesList is the ViewData name that is calling the enum result that was casted into a list.*@
                                 <span asp-validation-for="State" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-lg-2 mt-2">
