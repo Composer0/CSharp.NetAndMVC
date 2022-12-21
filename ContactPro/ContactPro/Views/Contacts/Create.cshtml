@@ -12,11 +12,12 @@
                 
                 <div class="col-12 col-lg-4">
                     <div class="square-img-container">
-                        <img class="square-img" src="/img/DefaultContactImage.png">
+                        <img id="contactImage" class="square-img" src="/img/DefaultContactImage.png">
                     </div>
                     <div class="mt-2">
 
-                         <input asp-for="ImageFile" class="form-control" accept=".png,.jpg,.jpeg,.gif">
+                         <input asp-for="ImageFile" class="form-control" accept=".png,.jpg,.jpeg,.gif" onchange="document.getElementById('contactImage').src = window.URL.createObjectURL(this.files[0])" /> 
+                         @*In line JavaScript is used to create the image change. onchange is what initiates and tells C# that we are writing in JavaScript once this event occurs.*@
                          <span asp-validation-for="ImageFile" class="text-danger"></span> 
                     </div>
                 </div>

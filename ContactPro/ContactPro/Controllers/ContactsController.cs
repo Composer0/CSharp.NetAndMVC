@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using ContactPro.Data;
 using ContactPro.Models;
 using ContactPro.Enums;
+using ContactPro.Services;
+using ContactPro.Services.Interfaces;
 
 namespace ContactPro.Controllers
 {
@@ -17,11 +19,15 @@ namespace ContactPro.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<AppUser> _userManager; //the underscore is a naming convention that helps identify a variable as being private.
+        private readonly IImageService _imageService;
 
-        public ContactsController(ApplicationDbContext context, UserManager<AppUser> userManager) //injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
+        public ContactsController(ApplicationDbContext context, 
+                                  UserManager<AppUser> userManager,
+                                  IImageService imageService) //injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
         {
             _context = context;
             _userManager = userManager;
+            _imageService = imageService;
         }
 
         // GET: Contacts
@@ -79,6 +85,13 @@ namespace ContactPro.Controllers
                 if (contact.BirthDate != null)
                 {
                     contact.BirthDate = DateTime.SpecifyKind(contact.BirthDate.Value, DateTimeKind.Utc); //SpecifyKind... first is what we want to convert. the 2nd is the information we are using. We are using the DateTimeKind.Utc taken in when created to create a Birthdate Value. This is all shared through the contact itself as the DateTimeKind.Utc was previously passed through to it when created with the AppUserId behind the scenes.
+                }
+
+                if (contact.ImageFile != null)
+                {
+                    contact.ImageData = await _imageService.ConvertFileToByteArrayAsync(contact.ImageFile);
+                    contact.ImageType = contact.ImageFile.ContentType; // looks at file and determines what type it is. Doc, Png, jpeg ect.
+                    // with this final bit. we have saved images to the database.
                 }
 
                 _context.Add(contact);
