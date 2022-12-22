@@ -20,14 +20,17 @@ namespace ContactPro.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<AppUser> _userManager; //the underscore is a naming convention that helps identify a variable as being private.
         private readonly IImageService _imageService;
+        private readonly IAddressBookService _addressBookService;
 
         public ContactsController(ApplicationDbContext context, 
                                   UserManager<AppUser> userManager,
-                                  IImageService imageService) //injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
+                                  IImageService imageService,
+                                  IAddressBookService addressBookService)//injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
         {
             _context = context;
             _userManager = userManager;
             _imageService = imageService;
+            _addressBookService = addressBookService;
         }
 
         // GET: Contacts
@@ -60,12 +63,13 @@ namespace ContactPro.Controllers
 
         // GET: Contacts/Create
         [Authorize]
-        public IActionResult Create()
+        public async Task<IActionResult> Create() //Needs to be written as a task because there is an async/await function being performed.
         {
-            ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
+            string appUserId = _userManager.GetUserId(User);
             ViewData["StatesList"] = new SelectList(Enum.GetValues(typeof(States)).Cast<States>().ToList());
             //Cast simply takes the result<States> and tells the States that they will be converted into a list. This is where our result/states will be stored.
             //A smarter explanation: The Cast<TResult>(IEnumerable) method enables the standard query operators to be invoked on non-generic collections by supplying the necessary type information. 
+            ViewData["CategoryList"] = new MultiSelectList(await _addressBookService.GetUserCategoriesAsync(appUserId), "Id", "Name");
             return View();
         }
 

@@ -25,7 +25,7 @@ builder.Services.AddControllersWithViews();
 
 // Custom Services Start
 builder.Services.AddScoped<IImageService, ImageService>(); //this ensures that each user gets their own class so that files aren't somehow mixed up.
-
+builder.Services.AddScoped<IAddressBookService, AddressBookService>();
 // Custom Services End
 
 var app = builder.Build();
