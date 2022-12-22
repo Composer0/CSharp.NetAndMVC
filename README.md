@@ -1,4 +1,4 @@
-# C#, .Net, PostgreSQL, and more.
+# C#, ASP.NET, PostgreSQL, and more.
 
 ## Week 3
 ### Project Name: Six Degrees
