@@ -1,6 +1,6 @@
 # C#, ASP.NET, PostgreSQL, and more.
 
-## Week 3 : Six Degrees
+## Week 3 : Six Degrees (Contact and Categories Applicaiton for Use Amongst Multiple Users)
 ### Project Name: Six Degrees
 
 Learning how to use .Net 6 and PostgreSQL while building a Contact Manager Applicaiton.
