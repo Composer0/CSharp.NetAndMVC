@@ -6,7 +6,7 @@
 Learning how to use .Net 6 and PostgreSQL while building a Contact Manager Applicaiton.
 
 
-Day 8
+Day 6
 - create interface for AddressBookService and service file for AddressBookService
 - register the interface and inject it into the controller
 - write the code for getting user categories
