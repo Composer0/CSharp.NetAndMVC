@@ -5,6 +5,41 @@
 
 Learning how to use .Net 6 and PostgreSQL while building a Contact Manager Applicaiton.
 
+
+Day 8
+- create interface for AddressBookService and service file for AddressBookService
+- register the interface and inject it into the controller
+- write the code for getting user categories
+- write code for saving categories to a contact
+- write code for checking if the contact already exists in the category
+
+Day 5
+- create Interface for ImageService as well as Service file for ImageService
+- add suffixes for image sizes
+- show default image if none is uploaded
+- convert file data
+- save the image to the database
+- change the image in the view using JavaScript
+- register IImageService in Program.cs
+
+
+Day 4
+Main steps that occurred include:
+- add States Enum to the view
+- remove AppUserId from the ModelState
+- inject the UserManager
+- set AppUserID and Created fields
+- convert the birthdate
+- change what happens after save is clicked.
+
+Day 3
+Main steps that occurred include:
+- add Identity and inject the SignInManager
+- force links not to render if the user is not signed in
+- secure controllers using Authorize attribute
+- secure Categories controller using Authorize attribute
+- apply template styling to code and make updates.
+
 Day 1 & 2
 The main steps that have occurred over the past two days have included: 
 - create a new AppUser model using inheritance
@@ -21,38 +56,7 @@ The main steps that have occurred over the past two days have included:
 - stylized application using a bootstrap template.
 - created personal branding for the webpage using canva.
 
-Day 3
-Main steps that occurred include:
-- add Identity and inject the SignInManager
-- force links not to render if the user is not signed in
-- secure controllers using Authorize attribute
-- secure Categories controller using Authorize attribute
-- apply template styling to code and make updates.
 
-Day 4
-Main steps that occurred include:
-- add States Enum to the view
-- remove AppUserId from the ModelState
-- inject the UserManager
-- set AppUserID and Created fields
-- convert the birthdate
-- change what happens after save is clicked.
-
-Day 5
-- create Interface for ImageService as well as Service file for ImageService
-- add suffixes for image sizes
-- show default image if none is uploaded
-- convert file data
-- save the image to the database
-- change the image in the view using JavaScript
-- register IImageService in Program.cs
-
-Day 8
-- create interface for AddressBookService and service file for AddressBookService
-- register the interface and inject it into the controller
-- write the code for getting user categories
-- write code for saving categories to a contact
-- write code for checking if the contact already exists in the category
 
 
 ## Week 1-2
