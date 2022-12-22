@@ -78,7 +78,7 @@ namespace ContactPro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,ImageFile")] Contact contact) //Bind references all inputs by name.
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,ImageFile")] Contact contact, List<int> CategoryList) //Bind references all inputs by name. List<int> categoryList was added to ensure that categories could be read and saved. It could not be added to the bind traditionally because it is a multiselect list.
         {
             ModelState.Remove("AppUserId");
             if (ModelState.IsValid)
@@ -100,6 +100,14 @@ namespace ContactPro.Controllers
 
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
+
+                //loop over all of the selected categories.
+                foreach (int categoryId in CategoryList)
+                {
+                    await _addressBookService.AddContactToCategoryAsync(categoryId, contact.Id); //called method from the service. Is a Task the same as a Function?
+                }
+                //save each category selected to the contact categories table.
+
                 return RedirectToAction(nameof(Index));
             }
             
