@@ -71,6 +71,36 @@ namespace ContactPro.Controllers
 
         }
 
+        [Authorize]
+        public IActionResult SearchContacts(string searchString)
+        {
+            string appUserId = _userManager.GetUserId(User);
+            var contacts = new List<Contact>();
+
+            AppUser appUser = _context.Users
+                                      .Include(c => c.Contacts)
+                                      .ThenInclude(c => c.Categories)
+                                      .FirstOrDefault(u => u.Id == appUserId);
+
+            if(String.IsNullOrEmpty(searchString)) //if is default search. Else is with a search string in place.
+            {
+                contacts = appUser.Contacts
+                                  .OrderBy(c => c.LastName)
+                                  .ThenBy(c => c.FirstName)
+                                  .ToList();
+            }
+            else
+            {
+                contacts = appUser.Contacts.Where(c => c.FullName!.ToLower().Contains(searchString.ToLower())) // convert both FullName and searchString to lower in order to make search easier for the user with more success.
+                                  .OrderBy(c => c.LastName)
+                                  .ThenBy(c => c.FirstName)
+                                  .ToList();
+            }
+            ViewData["CategoryId"] = new SelectList(appUser.Categories, "Id", "Name", 0); //0 is present to select all values and not filter.
+
+            return View(nameof(Index), contacts); //make sure that we are routing to Index view but with contacts result being inserted.
+        }
+
         // GET: Contacts/Details/5
         [Authorize]
         public async Task<IActionResult> Details(int? id)
