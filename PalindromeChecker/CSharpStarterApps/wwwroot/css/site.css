@@ -64,3 +64,18 @@ main {
 }
 
 
+td {
+    color: lightblue;
+}
+
+td[data-color-code='fizz'] {
+    color: orangered;
+}
+
+td[data-color-code='buzz'] {
+    color: yellow;
+}
+
+td[data-color-code='fizzbuzz'] {
+    color: springgreen;
+}

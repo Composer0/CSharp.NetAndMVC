@@ -31,7 +31,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "PalindromeChecker/1.0.0": {
+      "CSharpStarterApps/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.17",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
@@ -319,10 +319,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "PalindromeChecker.dll": {}
+          "CSharpStarterApps.dll": {}
         },
         "compile": {
-          "PalindromeChecker.dll": {}
+          "CSharpStarterApps.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.Razor.Extensions/5.0.17": {
@@ -2224,7 +2224,7 @@
     }
   },
   "libraries": {
-    "PalindromeChecker/1.0.0": {
+    "CSharpStarterApps/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

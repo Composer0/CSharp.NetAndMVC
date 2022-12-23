@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WLAZj03RFF/94YtFJ4/uc3t8F+zdpUF59wp0jGXbyhTKE0Qrq9rWW6Gq7qz4n6REJoCyhjYVHsjpu1ixB/JsBg==",
+  "dgSpecHash": "Ei8yjUvGbzSJqFPa5VJIe6xkn5833vobIG4FFomZZS0VX7F0M0CkO1ZUjsZ1SNYRrDxXnEFlITc32dcxsdzsiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\PalindromeChecker\\CSharpStarterApps.csproj",
+  "projectFilePath": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\CSharpStarterApps\\CSharpStarterApps.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\compo\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.17\\microsoft.aspnetcore.mvc.razor.extensions.5.0.17.nupkg.sha512",
     "C:\\Users\\compo\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.17\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.17.nupkg.sha512",

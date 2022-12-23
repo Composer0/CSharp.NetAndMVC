@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\PalindromeChecker\\CSharpStarterApps.csproj": {}
+    "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\CSharpStarterApps\\CSharpStarterApps.csproj": {}
   },
   "projects": {
-    "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\PalindromeChecker\\CSharpStarterApps.csproj": {
+    "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\CSharpStarterApps\\CSharpStarterApps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\PalindromeChecker\\CSharpStarterApps.csproj",
+        "projectUniqueName": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\CSharpStarterApps\\CSharpStarterApps.csproj",
         "projectName": "CSharpStarterApps",
-        "projectPath": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\PalindromeChecker\\CSharpStarterApps.csproj",
+        "projectPath": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\CSharpStarterApps\\CSharpStarterApps.csproj",
         "packagesPath": "C:\\Users\\compo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\PalindromeChecker\\obj\\",
+        "outputPath": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\PalindromeChecker\\CSharpStarterApps\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
