@@ -35,7 +35,7 @@ namespace ContactPro.Controllers
 
         // GET: Contacts
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(int categoryId) //int categoryId links to the Contacts index.cshtml
         {
             var contacts = new List<Contact>();
             /*List<Contact> contacts = new List<Contact>();*/ //explicit decoration. Shortens syntax.
@@ -49,18 +49,26 @@ namespace ContactPro.Controllers
 
             var categories = appUser.Categories;
 
+            if(categoryId == 0) // This is for if "All Contacts" is selection. If zero "All Contacts". Else anything other than zero in the array.
+            {
             contacts = appUser.Contacts.OrderBy(c => c.LastName)
                                        .ThenBy(c => c.FirstName)
                                        .ToList();
+            } 
+            else
+            {
+                contacts = appUser.Categories.FirstOrDefault(c => c.Id == categoryId)
+                                   .Contacts
+                                   .OrderBy(c => c.LastName)
+                                   .ThenBy(c => c.FirstName)
+                                   .ToList();
+            }
 
 
-            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name", categoryId);
 
             return View(contacts);
 
-            //Original
-            //var applicationDbContext = _context.Contacts.Include(c => c.AppUser); //Only the contacts of the logged in user is returned. Original Line before adding categories.
-            //return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Contacts/Details/5
