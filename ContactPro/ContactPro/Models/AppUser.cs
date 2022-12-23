@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 // Allows us to markup classes. Affects the way that the communications are processed.
 using Microsoft.AspNetCore.Identity;
+using NuGet.ContentModel;
 
 namespace ContactPro.Models
 {
@@ -19,5 +22,9 @@ namespace ContactPro.Models
 
         [NotMapped]
         public string? FullName { get { return $"{FirstName} {LastName}"; } } // Similar to JavaScript $`... interpolates into document.
+
+        //Below was needed to be added in order for our category/contact list items to be found when using AppUser model in the Contacts Controller.
+        public virtual ICollection<Contact> Contacts { get; set; } = new HashSet<Contact>();
+        public virtual ICollection<Category> Categories { get; set; } = new HashSet<Category>();
     }
 }

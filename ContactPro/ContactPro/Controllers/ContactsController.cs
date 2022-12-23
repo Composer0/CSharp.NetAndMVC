@@ -27,7 +27,7 @@ namespace ContactPro.Controllers
                                   IImageService imageService,
                                   IAddressBookService addressBookService)//injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
         {
-            _context = context;
+            _context = context; // allows access to database.
             _userManager = userManager;
             _imageService = imageService;
             _addressBookService = addressBookService;
@@ -35,10 +35,32 @@ namespace ContactPro.Controllers
 
         // GET: Contacts
         [Authorize]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Contacts.Include(c => c.AppUser);
-            return View(await applicationDbContext.ToListAsync());
+            var contacts = new List<Contact>();
+            /*List<Contact> contacts = new List<Contact>();*/ //explicit decoration. Shortens syntax.
+            string appUserId = _userManager.GetUserId(User);
+
+            //return userId and its associated contacts and categories.
+            AppUser appUser = _context.Users
+                                      .Include(c => c.Contacts)
+                                      .ThenInclude(c => c.Categories)
+                                      .FirstOrDefault(u => u.Id == appUserId)!; // c represents AppUser class in this instance. u represents user. ! added at the end to avoid green null warning. Because a user will be logged in to see the values being pulled it is safe to ignore this warning.
+
+            var categories = appUser.Categories;
+
+            contacts = appUser.Contacts.OrderBy(c => c.LastName)
+                                       .ThenBy(c => c.FirstName)
+                                       .ToList();
+
+
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name");
+
+            return View(contacts);
+
+            //Original
+            //var applicationDbContext = _context.Contacts.Include(c => c.AppUser); //Only the contacts of the logged in user is returned. Original Line before adding categories.
+            //return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Contacts/Details/5
