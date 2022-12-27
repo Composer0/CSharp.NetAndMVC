@@ -40,9 +40,20 @@ namespace ContactPro.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<int>> GetContactCategoryIdsAsync(int contactId)
+        public async Task<ICollection<int>> GetContactCategoryIdsAsync(int contactId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var contact = await _context.Contacts.Include(c => c.Categories) //grabs categories associated.
+                                                   .FirstOrDefaultAsync(c => c.Id == contactId); //first match it finds.
+
+                List<int> categoryIds = contact.Categories.Select(c => c.Id).ToList(); //the Select allows the previously selected items to show as selected.
+                return categoryIds;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Category>> GetUserCategoriesAsync(string userId)
