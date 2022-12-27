@@ -207,7 +207,7 @@ namespace ContactPro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,ImageFile")] Contact contact) //This was edited to reflect what was being taken in from the form.
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created, ImageData, ImageType")] Contact contact) //This was edited to reflect what was being taken in from the form.
         {
             if (id != contact.Id)
             {
@@ -219,6 +219,13 @@ namespace ContactPro.Controllers
             {
                 try
                 {
+                    contact.Created = DateTime.SpecifyKind(contact.Created, DateTimeKind.Utc); //DateTime will always be available.
+                    
+                    if(contact.BirthDate != null) //Possible for this value to not exist if null.
+                    {
+                        contact.BirthDate = DateTime.SpecifyKind(contact.BirthDate.Value, DateTimeKind.Utc);
+                    }
+
                     _context.Update(contact);
                     await _context.SaveChangesAsync();
                 }
