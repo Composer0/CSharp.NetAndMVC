@@ -204,12 +204,13 @@ namespace ContactPro.Controllers
             return View(contact);
         }
 
+
         // POST: Contacts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created,ImageFile,ImageData, ImageType")] Contact contact, List<int> CategoryList) //This was edited to reflect what was being taken in from the form.
+        public async Task<IActionResult> Edit(int id, [Bind("Id, AppUserId, FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created,ImageFile,ImageData, ImageType")] Contact contact, List<int> CategoryList) //This was edited to reflect what was being taken in from the form.
         {
             if (id != contact.Id)
             {
