@@ -77,12 +77,14 @@ namespace ContactPro.Controllers
             string appUserId = _userManager.GetUserId(User);
             var contacts = new List<Contact>();
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             AppUser appUser = _context.Users
                                       .Include(c => c.Contacts)
                                       .ThenInclude(c => c.Categories)
                                       .FirstOrDefault(u => u.Id == appUserId);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
-            if(String.IsNullOrEmpty(searchString)) //if is default search. Else is with a search string in place.
+            if (String.IsNullOrEmpty(searchString)) //if is default search. Else is with a search string in place.
             {
                 contacts = appUser.Contacts
                                   .OrderBy(c => c.LastName)
@@ -187,8 +189,8 @@ namespace ContactPro.Controllers
             string appUserId = _userManager.GetUserId(User);
 
             //var contact = await _context.Contacts.FindAsync(id);  Can't use this for security reasons. Possible to still find another user's contacts.
-            var contact = await _context.Contacts.Where(c => c.Id == id && c.AppUserId == appUserId) //Ensures that it has to have the user id and the appUserId in order for the contact to be found.
-                                                 .FirstOrDefaultAsync();
+            var contact = await _context.Contacts.Where(c => c.Id == id && c.AppUserId == appUserId) 
+                                                 .FirstOrDefaultAsync(); //Ensures that it has to have the user id and the appUserId in order for the contact to be found.
             if (contact == null)
             {
                 return NotFound();
@@ -197,7 +199,7 @@ namespace ContactPro.Controllers
 
             ViewData["StatesList"] = new SelectList(Enum.GetValues(typeof(States)).Cast<States>().ToList());
             ViewData["CategoryList"] = new MultiSelectList(await _addressBookService.GetUserCategoriesAsync(appUserId), "Id", "Name", await _addressBookService.GetContactCategoryIdsAsync(contact.Id));
-                                    ;
+                                    
 
             return View(contact);
         }
@@ -207,7 +209,7 @@ namespace ContactPro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created, ImageData, ImageType")] Contact contact) //This was edited to reflect what was being taken in from the form.
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,Address1,Address2,City,State,ZipCode,Email,PhoneNumber,Created,ImageFile,ImageData, ImageType")] Contact contact, List<int> CategoryList) //This was edited to reflect what was being taken in from the form.
         {
             if (id != contact.Id)
             {
@@ -226,8 +228,28 @@ namespace ContactPro.Controllers
                         contact.BirthDate = DateTime.SpecifyKind(contact.BirthDate.Value, DateTimeKind.Utc);
                     }
 
+                    if(contact.ImageFile != null)
+                    {
+                        contact.ImageData = await _imageService.ConvertFileToByteArrayAsync(contact.ImageFile);
+                        contact.ImageType = contact.ImageFile.ContentType; //IFormFile allows us to see what type.
+                    }
+
                     _context.Update(contact);
                     await _context.SaveChangesAsync();
+
+                    //save categories
+                    //first step is to remove current categories. This will be followed by adding selected current categories.
+
+                    List<Category> oldCategories = (await _addressBookService.GetContactCategoriesAsync(contact.Id)).ToList();
+                    foreach (var category in oldCategories)
+                    {
+                        await _addressBookService.RemoveContactFromCategoryAsync(category.Id, contact.Id); //removes category by identifying the id.
+                    }
+                    foreach(int categoryid in CategoryList)
+                    {
+                        await _addressBookService.AddContactToCategoryAsync(categoryid, contact.Id);
+                    }
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
