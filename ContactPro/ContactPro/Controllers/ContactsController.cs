@@ -103,6 +103,16 @@ namespace ContactPro.Controllers
             return View(nameof(Index), contacts); //make sure that we are routing to Index view but with contacts result being inserted.
         }
 
+        //Email
+        [Authorize]
+        public IActionResult EmailContact(int contactId)
+        {
+            return View();
+        }
+
+
+
+
         // GET: Contacts/Details/5
         [Authorize]
         public async Task<IActionResult> Details(int? id)

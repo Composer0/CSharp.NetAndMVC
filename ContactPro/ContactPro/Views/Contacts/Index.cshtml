@@ -72,8 +72,8 @@
                                     <span class="fw-bold me-2">Email:</span>@Html.DisplayFor(modelItem => contact.Email)
                                 </div>
                                 <div class="fs-4">
-                                    <a class="me-3 editIcons" asp-action="Edit" asp-route-id="@contact.Id"><i class="bi bi-pencil-fill "></i></a>                              
-                                    <a class="me-3 editIcons" asp-action="Details" asp-route-id="@contact.Id"><i class="bi bi-envelope-fill "></i></a>
+                                    <a class="me-3 editIcons" asp-action="Edit" asp-route-id="@contact.Id"><i class="bi bi-pencil-fill "></i></a>                      
+                                    <a class="me-3 editIcons" asp-action="EmailContact" asp-route-id="@contact.Id"><i class="bi bi-envelope-fill "></i></a>
                                     <a class="me-3 editIcons" asp-action="Delete" asp-route-id="@contact.Id"><i class="bi bi-trash-fill text-danger "></i></a>
 
                                 </div>                                      
