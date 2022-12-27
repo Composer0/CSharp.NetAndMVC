@@ -3,7 +3,9 @@
     "",
     "\\Helpers",
     "\\Views",
-    "\\Views\\Home"
+    "\\Views\\Home",
+    "\\Views\\Loancalculator"
   ],
+  "SelectedNode": "\\Views\\Loancalculator\\Calculator.cshtml",
   "PreviewInSolutionExplorer": false
 }

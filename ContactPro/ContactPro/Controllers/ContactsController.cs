@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using ContactPro.Data;
 using ContactPro.Models;
+using ContactPro.Models.ViewModels;
 using ContactPro.Enums;
 using ContactPro.Services;
 using ContactPro.Services.Interfaces;
+using ContactPro.Models.ViewModels;
 
 namespace ContactPro.Controllers
 {
@@ -105,9 +107,31 @@ namespace ContactPro.Controllers
 
         //Email
         [Authorize]
-        public IActionResult EmailContact(int contactId)
+        public async Task<IActionResult> EmailContact(int id) //When making an action result use a method, you must wrap the phrase action result within a task. Especially if async is present at the beginning. Be sure to follow routing map as listing in Program.cs. This is why we use lowercase id as anything else will route the page into an error page.
         {
-            return View();
+            string appUserId = _userManager.GetUserId(User);
+            Contact contact = await _context.Contacts.Where(c => c.Id == id && c.AppUserId == appUserId)
+                                                     .FirstOrDefaultAsync();
+
+            if(contact == null)
+            {
+                return NotFound();
+            }
+
+            EmailData emailData = new EmailData()
+            {
+                EmailAddress = contact.Email,
+                FirstName = contact.FirstName,
+                LastName = contact.LastName
+            };
+
+            EmailContactViewModel model = new EmailContactViewModel()
+            {
+                Contact = contact,
+                EmailData = emailData
+            };
+
+            return View(model);
         }
 
 
