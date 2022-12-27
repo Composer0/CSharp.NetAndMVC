@@ -184,12 +184,20 @@ namespace ContactPro.Controllers
                 return NotFound();
             }
 
-            var contact = await _context.Contacts.FindAsync(id);
+            string appUserId = _userManager.GetUserId(User);
+
+            //var contact = await _context.Contacts.FindAsync(id);  Can't use this for security reasons. Possible to still find another user's contacts.
+            var contact = await _context.Contacts.Where(c => c.Id == id && c.AppUserId == appUserId) //Ensures that it has to have the user id and the appUserId in order for the contact to be found.
+                                                 .FirstOrDefaultAsync();
             if (contact == null)
             {
                 return NotFound();
             }
-            ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id", contact.AppUserId);
+            //ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id", contact.AppUserId);
+
+            ViewData["StatesList"] = new SelectList(Enum.GetValues(typeof(States)).Cast<States>().ToList());
+            ViewData["CategoryList"] = new MultiSelectList(await _addressBookService.GetUserCategoriesAsync(appUserId), "Id", "Name");
+
             return View(contact);
         }
 
