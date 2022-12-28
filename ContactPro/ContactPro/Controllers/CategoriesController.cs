@@ -11,24 +11,33 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using ContactPro.Data;
 using ContactPro.Models;
+using ContactPro.Models.ViewModels;
 
 namespace ContactPro.Controllers
 {
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context,
+                                    UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Categories
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Categories.Include(c => c.AppUser);
-            return View(await applicationDbContext.ToListAsync());
+            string appUserId = _userManager.GetUserId(User); //always acts as a handler to current id user.
+
+
+            var categories = await _context.Categories.Where(c => c.AppUserId == appUserId)
+                                                .Include(c => c.AppUser)
+                                                .ToListAsync(); //code ensures that AppUserId is filtered out.
+            return View(categories); //ApplicationDbContext is just a default name. Changing it to categories provides more clarity for all programmers as to the purpose of the method.
         }
 
         // GET: Categories/Details/5
