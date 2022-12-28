@@ -14,6 +14,7 @@ using ContactPro.Enums;
 using ContactPro.Services;
 using ContactPro.Services.Interfaces;
 using ContactPro.Models.ViewModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ContactPro.Controllers
 {
@@ -23,22 +24,27 @@ namespace ContactPro.Controllers
         private readonly UserManager<AppUser> _userManager; //the underscore is a naming convention that helps identify a variable as being private.
         private readonly IImageService _imageService;
         private readonly IAddressBookService _addressBookService;
+        private readonly IEmailSender _emailService;
 
         public ContactsController(ApplicationDbContext context, 
                                   UserManager<AppUser> userManager,
                                   IImageService imageService,
-                                  IAddressBookService addressBookService)//injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
+                                  IAddressBookService addressBookService,
+                                  IEmailSender emailService)//injection. Where we push information into the controller. it allows access to objects established anywhere inside the properties.
         {
             _context = context; // allows access to database.
             _userManager = userManager;
             _imageService = imageService;
             _addressBookService = addressBookService;
+            _emailService = emailService;
         }
 
         // GET: Contacts
         [Authorize]
-        public IActionResult Index(int categoryId) //int categoryId links to the Contacts index.cshtml
+        public IActionResult Index(int categoryId, string swalMessage = null) //int categoryId links to the Contacts index.cshtml
         {
+            ViewData["SwalMessage"] = swalMessage; //sweet alert message is represented by swal.
+
             var contacts = new List<Contact>();
             /*List<Contact> contacts = new List<Contact>();*/ //explicit decoration. Shortens syntax.
             string appUserId = _userManager.GetUserId(User);
@@ -134,6 +140,27 @@ namespace ContactPro.Controllers
             return View(model);
         }
 
+        //Email: Post
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EmailContact(EmailContactViewModel ecvm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _emailService.SendEmailAsync(ecvm.EmailData.EmailAddress, ecvm.EmailData.Subject, ecvm.EmailData.Body);
+                    return RedirectToAction("Index", "Contacts", new {swalMessage = "Success: Email Sent!"}); //Success has to be present
+
+                }
+                catch
+                {
+                    return RedirectToAction("Index", "Contacts", new { swalMessage = "Error: Email Send Failed!" }); //Error has to be present.
+                    throw;
+                }
+            }
+            return View(ecvm);
+        }
 
 
 
