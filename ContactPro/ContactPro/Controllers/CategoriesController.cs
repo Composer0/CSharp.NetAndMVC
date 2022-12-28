@@ -40,26 +40,6 @@ namespace ContactPro.Controllers
             return View(categories); //ApplicationDbContext is just a default name. Changing it to categories provides more clarity for all programmers as to the purpose of the method.
         }
 
-        // GET: Categories/Details/5
-        [Authorize]
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories
-                .Include(c => c.AppUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }
-
         // GET: Categories/Create
         [Authorize]
         public IActionResult Create()
@@ -155,9 +135,10 @@ namespace ContactPro.Controllers
                 return NotFound();
             }
 
+            string appUserId = _userManager.GetUserId(User);
+
             var category = await _context.Categories
-                .Include(c => c.AppUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(c => c.Id == id && c.AppUserId == appUserId); //m was originally in place to reference model. We use c to know it means category
             if (category == null)
             {
                 return NotFound();
@@ -175,13 +156,15 @@ namespace ContactPro.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
             }
-            var category = await _context.Categories.FindAsync(id);
+            string appUserId = _userManager.GetUserId(User);
+            var category = await _context.Categories.FirstOrDefaultAsync(c=> c.Id == id && c.AppUserId == appUserId);
+
             if (category != null)
             {
                 _context.Categories.Remove(category);
+                await _context.SaveChangesAsync(); //moved here to ensure that it deletes on action and doesn't create a bug when loading the view.
             }
             
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
