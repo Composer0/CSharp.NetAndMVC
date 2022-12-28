@@ -46,6 +46,8 @@ else
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/Home/HandleError/{0}"); //places listener into application that will redirect to specified errors page.
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
