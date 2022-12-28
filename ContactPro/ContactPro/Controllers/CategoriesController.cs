@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using ContactPro.Data;
 using ContactPro.Models;
 using ContactPro.Models.ViewModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ContactPro.Controllers
 {
@@ -19,18 +20,22 @@ namespace ContactPro.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IEmailSender _emailService;
 
         public CategoriesController(ApplicationDbContext context,
-                                    UserManager<AppUser> userManager)
+                                    UserManager<AppUser> userManager,
+                                    IEmailSender emailService)
         {
             _context = context;
             _userManager = userManager;
+            _emailService = emailService;
         }
 
         // GET: Categories
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string swalMessage = null)
         {
+            ViewData["SwalMessage"] = swalMessage; //the insertion fo swalMessage came after writing the initial code.
             string appUserId = _userManager.GetUserId(User); //always acts as a handler to current id user.
 
 
@@ -38,6 +43,51 @@ namespace ContactPro.Controllers
                                                 .Include(c => c.AppUser)
                                                 .ToListAsync(); //code ensures that AppUserId is filtered out.
             return View(categories); //ApplicationDbContext is just a default name. Changing it to categories provides more clarity for all programmers as to the purpose of the method.
+        }
+
+        //Email: Categories
+        [Authorize]
+        public async Task<IActionResult> EmailCategory(int id)
+        {
+            string appUserId = _userManager.GetUserId(User);
+            Category category = await _context.Categories.Include(c => c.Contacts)
+                                                         .FirstOrDefaultAsync(c => c.Id == id && c.AppUserId == appUserId);
+
+            List<string> emails = category.Contacts.Select(c => c.Email).ToList();
+            EmailData emailData = new EmailData()
+            {
+                GroupName = category.Name,
+                EmailAddress = String.Join(';', emails),
+                Subject = $"Group Message: {category.Name}"
+            };  // this converts the emails into a string where we can separate them via a semicolon.
+
+            EmailCategoryViewModel model = new EmailCategoryViewModel()
+            {
+                Contacts = category.Contacts.ToList(), //had to check protection in model. Needed to be made public.
+                EmailData = emailData,
+            };
+
+            return View(model);
+        }
+
+        //Email: Categories/Post
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> EmailCategory(EmailCategoryViewModel ecvm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _emailService.SendEmailAsync(ecvm.EmailData.EmailAddress, ecvm.EmailData.Subject, ecvm.EmailData.Body);
+                    return RedirectToAction("Index", "Categories", new {swalMessage = "Success: Email(s) Sent"}); //second property ensures we go to the correct index.
+                }
+                catch
+                {
+                    return RedirectToAction("Index", "Categories", new { swalMessage = "Error: Email(s) Could Not Be Sent!" });
+                }
+            }
+            return View(ecvm);
         }
 
         // GET: Categories/Create
