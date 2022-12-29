@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IdSVMSfL1tUdHW/SP3omIEL0O0gKr50c02UBD4lZhpM=",
+  "Hash": "cOSKUpPE0VqJI+SbPc7aZmLO4HKvEtp8BhidnkzVuqc=",
   "Source": "ContactPro",
   "BasePath": "_content/ContactPro",
   "Mode": "Default",
@@ -1088,23 +1088,6 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\ContactPro\\ContactPro\\wwwroot\\favicon.ico",
-      "SourceId": "ContactPro",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\ContactPro\\ContactPro\\wwwroot\\",
-      "BasePath": "_content/ContactPro",
-      "RelativePath": "favicon.ico",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
       "Identity": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\ContactPro\\ContactPro\\wwwroot\\img\\ClaudiaBlack.png",
       "SourceId": "ContactPro",
       "SourceType": "Discovered",
@@ -1154,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\DefaultContactImage.png"
+    },
+    {
+      "Identity": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\ContactPro\\ContactPro\\wwwroot\\img\\favicon.ico",
+      "SourceId": "ContactPro",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\ContactPro\\ContactPro\\wwwroot\\",
+      "BasePath": "_content/ContactPro",
+      "RelativePath": "img/favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\favicon.ico"
     },
     {
       "Identity": "C:\\Users\\compo\\Desktop\\BootCamp\\C#\\ContactPro\\ContactPro\\wwwroot\\img\\FrankLangella.png",

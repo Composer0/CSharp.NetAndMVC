@@ -18,16 +18,17 @@ body {
 }*/
 
 :root {
-    --cf-primaryColor: #0869b8;
-    --cf-primaryColorDark: #002a4e;
-    --cf-primaryColorLight: #edf5fc;
-    --cf-secondaryColor: #fff0d9;
-    --cf-secondaryColorLight: #FFF8EC;
-    --cf-dark-color: #131313;
-    --cf-light-gray: #d9d9d9;
-    --cf-light-color: #eeeeee;
-    --cf-title-font: 'Fira Sans', sans-serif;
-    --cf-body-font: 'Roboto', sans-serif;
+    --primaryColor: #0869b8;
+    --primaryColorDark: #002a4e;
+    --primaryColorLight: #edf5fc;
+    --secondaryColor: #edc68a;
+    --secondaryColorLight: #FFF8EC;
+    --dark-color: #131313;
+    --light-gray: #d9d9d9;
+    --light-color: #eeeeee;
+    --title-font: 'Fira Sans', sans-serif;
+    --body-font: 'Roboto', sans-serif;
+    --dark-body: #050214;
 }
 
 html,
@@ -37,11 +38,11 @@ body {
 
 body {
     /* fallback for old browsers */
-    background-color: var(--cf-primaryColorLight);
+    background-color: var(--dark-body);
     display: flex;
     flex-direction: column;
-    color: var(--cf-dark-color);
-    font-family: var(--cf-body-font);
+    color: var(--dark-color);
+    font-family: var(--body-font);
     font-weight: 400;
     font-size: 1.2rem;
 }
@@ -49,26 +50,26 @@ body {
 /*--Button Overrides --*/
 /*-- Button styles override Bootstrap Styles --*/
 .btn-outline-primary {
-    color: var(--cf-dark-color);
-    border-color: var(--cf-primaryColor) !important;
+    color: var(--dark-color);
+    border-color: var(--primaryColor) !important;
 }
 
     .btn-outline-primary:hover,
     .btn-outline-primary:active,
     .btn-outline-primary:focus {
-        border-color: var(--cf-secondaryColor) !important;
-        background-color: var(--cf-primaryColor);
+        border-color: var(--secondaryColor) !important;
+        background-color: var(--primaryColor);
     }
 
 .btn-primary {
     color: white !important;
-    background-color: var(--cf-primaryColor) !important;
-    border-color: var(--cf-secondary-color);
+    background-color: var(--primaryColor) !important;
+    border-color: var(--secondary-color);
 }
 
     .btn-primary:hover {
         filter: brightness(1.2) !important;
-        border-color: var(--cf-primaryColorDark);
+        border-color: var(--primaryColorDark);
     }
 
     .btn-primary:active,
@@ -82,7 +83,7 @@ body {
 }
 
 nav {
-    background-color: var(--cf-primaryColorLight)
+    background-color: var(--primaryColorLight)
 }
 
 h1,
@@ -91,14 +92,14 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--cf-title-font);
+    font-family: var(--title-font);
     font-weight: 600;
     text-transform: uppercase;
 }
 
 
 main {
-    background-color: var(--cf-primaryColorLight);
+    background-color: var(--primaryColorLight);
 }
 
 .content {
@@ -116,13 +117,13 @@ main {
 }
 
 .texthighlight {
-    color: var(--cf-primaryColor);
+    color: var(--primaryColor);
 }
 
 .heroTitle {
     font-size: 3rem;
     text-transform: uppercase;
-    font-family: var(--cf-title-font);
+    font-family: var(--title-font);
     font-weight: 600;
 }
 
@@ -131,13 +132,13 @@ main {
 }
 
 .pageHeader {
-    background-color: var(--cf-secondaryColor);
+    background-color: var(--secondaryColor);
     padding-top: 7.5rem;
     padding-bottom: 2.5rem;
 }
 
 .pageTitle {
-    font-family: var(--cf-title-font);
+    font-family: var(--title-font);
     font-weight: 500;
     font-size: 3rem;
     line-height: 3rem;
@@ -150,10 +151,10 @@ main {
 
 .sideNav {
     border-radius: 25px;
-    border-color: var(--cf-light-color);
+    border-color: var(--light-color);
     border-style: solid;
     border-width: 3px;
-    background-color: var(--cf-secondaryColor);
+    background-color: var(--secondaryColor);
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 1rem;
@@ -164,11 +165,11 @@ main {
 .editIcons {
     font-size: 1.5rem;
     opacity: .9;
-    color: var(--cf-primaryColorDark);
+    color: var(--primaryColorDark);
 }
 
     .editIcons:hover {
-        color: var(--cf-primaryColor);
+        color: var(--primaryColor);
         font-weight: bold;
         opacity: 1;
         cursor: pointer;
@@ -181,30 +182,30 @@ main {
 
 .footer {
     flex-shrink: 0;
-    background-color: var(--cf-secondaryColor);
+    background-color: var(--secondaryColor);
 }
 
 .copyright {
-    color: var(--cf-primaryColorDark);
+    color: var(--primaryColorDark);
     font-size: .9rem;
 }
 
 .socialicons {
-    color: var(--cf-primaryColorDark);
+    color: var(--primaryColorDark);
     opacity: .9;
     font-size: 2rem;
 }
 
     .socialicons:hover {
-        color: var(--cf-primaryColor);
+        color: var(--primaryColor);
         opacity: 1;
         cursor: pointer;
     }
 
 .square-img-container {
     position: relative;
-    background-color: var(--cf-primaryColorLight);
-    border-color: var(--cf-light-gray);
+    background-color: var(--primaryColorLight);
+    border-color: var(--light-gray);
     border-style: solid;
 }
 

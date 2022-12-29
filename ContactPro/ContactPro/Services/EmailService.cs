@@ -17,7 +17,7 @@ namespace ContactPro.Services
         }
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var emailSender = _mailSettings.Email;  //email address sending the sender.
+            var emailSender = _mailSettings.Email ?? Environment.GetEnvironmentVariable("Email");  //email address sending the sender.
 
             MimeMessage newEmail = new(); //handles email construction.
 
@@ -39,9 +39,9 @@ namespace ContactPro.Services
 
             try
             {
-                var host = _mailSettings.Host;
-                var port = _mailSettings.Port;
-                var password = _mailSettings.Password;
+                var host = _mailSettings.Host ?? Environment.GetEnvironmentVariable("Host");
+                var port = _mailSettings.Port != 0 ? _mailSettings.Port : int.Parse(Environment.GetEnvironmentVariable("Port")!); //error showed originally because port is an int by nature. Has to be converted.
+                var password = _mailSettings.Password ?? Environment.GetEnvironmentVariable("Password");
 
                 await smtpClient.ConnectAsync(host, port, SecureSocketOptions.StartTls);
                 await smtpClient.AuthenticateAsync(emailSender, password);

@@ -5,14 +5,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ContactPro.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using ContactPro.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 // var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
 // Add services to the container.
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionString = builder.Configuration.GetSection("pgSettings")["pgConnection"];
+//var connectionString = builder.Configuration.GetSection("pgSettings")["pgConnection"]; //local environment
 // The above is what connects to our database. GetSection allows for the 'Secrets' file to be found and selected.
+var connectionString = ConnectionHelper.GetConnectionString(builder.Configuration);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     // options.UseSqlServer(connectionString)); -- Original
@@ -29,10 +31,12 @@ builder.Services.AddScoped<IImageService, ImageService>(); //this ensures that e
 builder.Services.AddScoped<IAddressBookService, AddressBookService>();
 builder.Services.AddScoped<IEmailSender, EmailService>();
 
-builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); //this is local use only
 // Custom Services End
 
 var app = builder.Build();
+var scope = app.Services.CreateScope();
+await DataHelper.ManageDataAsync(scope.ServiceProvider); //keep the database updated with the latest migrations.
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
