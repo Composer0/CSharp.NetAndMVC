@@ -1,0 +1,16 @@
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\bin\Debug\net5.0\Datatypes.exe
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\bin\Debug\net5.0\Datatypes.deps.json
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\bin\Debug\net5.0\Datatypes.runtimeconfig.json
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\bin\Debug\net5.0\Datatypes.runtimeconfig.dev.json
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\bin\Debug\net5.0\Datatypes.dll
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\bin\Debug\net5.0\Datatypes.pdb
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.csproj.AssemblyReference.cache
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.AssemblyInfoInputs.cache
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.AssemblyInfo.cs
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.csproj.CoreCompileInputs.cache
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.dll
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\refint\Datatypes.dll
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.pdb
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\Datatypes.genruntimeconfig.cache
+C:\Users\compo\Desktop\BootCamp\C#\Datatypes\Datatypes\obj\Debug\net5.0\ref\Datatypes.dll
