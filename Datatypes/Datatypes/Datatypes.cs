@@ -4,7 +4,7 @@ namespace Datatypes
 {
     internal class Datatypes
     {
-        static void Main(string[] args)
+        static void Second(string[] args)
         {
             //declaring a variable.
             int num1;
@@ -20,7 +20,7 @@ namespace Datatypes
             //This is all known as concatenation - a series of interconnected things or events.
 
             // how to declare multiple variables at once.
-            int num3, num4, num5;
+            //int num3, num4, num5;
             // Side note b ecareful of when you reassign a value. If you are using a sentence like the one above, it would be a bad idea to change one of the int values before the statement is read unless the statement is meant to reflect the change that you've made.
 
             double d1 = 3.1415;
