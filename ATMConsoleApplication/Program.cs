@@ -48,7 +48,7 @@ public class CardHolder
         return Balance;
     }
 
-    public void SetNumber(string NewCardNumber)
+    public void SetNumber(string NewCardNumber) //remember in a set string, things like NewCardNumber are values that are never seen elsewhere.
     {
         CardNumber = NewCardNumber;
     }
