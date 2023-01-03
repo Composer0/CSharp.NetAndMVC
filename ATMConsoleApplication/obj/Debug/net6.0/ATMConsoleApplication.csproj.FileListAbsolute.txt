@@ -1,0 +1,15 @@
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.csproj.AssemblyReference.cache
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.AssemblyInfoInputs.cache
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.AssemblyInfo.cs
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.csproj.CoreCompileInputs.cache
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\bin\Debug\net6.0\ATMConsoleApplication.exe
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\bin\Debug\net6.0\ATMConsoleApplication.deps.json
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\bin\Debug\net6.0\ATMConsoleApplication.runtimeconfig.json
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\bin\Debug\net6.0\ATMConsoleApplication.dll
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\bin\Debug\net6.0\ATMConsoleApplication.pdb
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.dll
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\refint\ATMConsoleApplication.dll
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.pdb
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ATMConsoleApplication.genruntimeconfig.cache
+C:\Users\compo\Desktop\BootCamp\C#\ATMConsoleApplication\obj\Debug\net6.0\ref\ATMConsoleApplication.dll
