@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WatchList.Data;
 using WatchList.Models.Settings;
+using WatchList.Services.Interfaces;
 
 namespace WatchList
 {
@@ -49,7 +50,7 @@ namespace WatchList
             //services.AddScoped<IRemoteMovieService, TMDBMovieService>();
             //services.AddScoped<IDataMappingService, TMDBMappingService>();
 
-            //services.AddTransient<SeedService>();
+            services.AddTransient<SeedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
