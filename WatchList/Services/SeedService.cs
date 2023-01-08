@@ -10,7 +10,7 @@ using WatchList.Models.Database;
 using WatchList.Models.Settings;
 
 
-namespace WatchList.Services.Interfaces
+namespace WatchList.Services
 {
     public class SeedService
     {

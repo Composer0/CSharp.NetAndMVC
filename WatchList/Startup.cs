@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WatchList.Data;
 using WatchList.Models.Settings;
+using WatchList.Services;
 using WatchList.Services.Interfaces;
 
 namespace WatchList
@@ -45,12 +46,12 @@ namespace WatchList
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
 
-            //the below items may be used or referenced later.
-            //services.AddSingleton<IImageService, BasicImageService>();
-            //services.AddScoped<IRemoteMovieService, TMDBMovieService>();
-            //services.AddScoped<IDataMappingService, TMDBMappingService>();
-
             services.AddTransient<SeedService>();
+            services.AddHttpClient();
+            services.AddSingleton<IImageService, BasicImageService>();
+            services.AddScoped<IRemoteMovieService, TMDBMovieService>();
+            services.AddScoped<IDataMappingService, TMDBMappingService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
