@@ -16,26 +16,7 @@ namespace WatchList.Services
         private AppSettings _appSettings;
         private readonly IImageService _imageService;
 
-        public ActorDetail MapActorDetailAsync(ActorDetail actor)
-        {
-            //1. Image
-            actor.profile_path = BuildCastImage(actor.profile_path);
 
-            //2. Bio
-            if (string.IsNullOrEmpty(actor.biography))
-                actor.biography = "Not Available";
-
-            //Place of birth
-            if (string.IsNullOrEmpty(actor.place_of_birth))
-                actor.place_of_birth = "Not Available";
-
-            //Birthday
-            if (string.IsNullOrEmpty(actor.birthday))
-                actor.birthday = "Not Available";
-            else
-                actor.birthday = DateTime.Parse(actor.birthday).ToString("MMM dd, yyyy");
-            return actor;
-        }
 
         public async Task<Movie> MapMovieDetailAsync(MovieDetail movie)
         {
@@ -104,6 +85,28 @@ namespace WatchList.Services
             return newMovie;
 
         }
+
+        public ActorDetail MapActorDetailAsync(ActorDetail actor)
+        {
+            //1. Image
+            actor.profile_path = BuildCastImage(actor.profile_path);
+
+            //2. Bio
+            if (string.IsNullOrEmpty(actor.biography))
+                actor.biography = "Not Available";
+
+            //Place of birth
+            if (string.IsNullOrEmpty(actor.place_of_birth))
+                actor.place_of_birth = "Not Available";
+
+            //Birthday
+            if (string.IsNullOrEmpty(actor.birthday))
+                actor.birthday = "Not Available";
+            else
+                actor.birthday = DateTime.Parse(actor.birthday).ToString("MMM dd, yyyy");
+            return actor;
+        }
+
         public string BuildCastImage(string profilePath)
         {
             if (string.IsNullOrEmpty(profilePath))
@@ -123,7 +126,7 @@ namespace WatchList.Services
         }
         private async Task<byte[]> EncodePosterImageAsync(string path)
         {
-            var posterPath = $"{{_appSettings.TMDBSettings.BaseImagePath}/{_appSettings.WatchListSettings.DefaultPosterSize}/{path}";
+            var posterPath = $"{_appSettings.TMDBSettings.BaseImagePath}/{_appSettings.WatchListSettings.DefaultPosterSize}/{path}";
             return await _imageService.EncodeImageURLAsync(posterPath);
         }
 
