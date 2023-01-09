@@ -18,7 +18,7 @@ namespace WatchList.Services
         private readonly AppSettings _appSettings;
         private readonly IHttpClientFactory _httpClient;
 
-        public TMDBMovieService(IOptions<AppSettings> appSettings, IHttpClientFactory httpClient = null)
+        public TMDBMovieService(IOptions<AppSettings> appSettings, IHttpClientFactory httpClient)
         {
             _appSettings = appSettings.Value;
             _httpClient = httpClient;
@@ -27,7 +27,7 @@ namespace WatchList.Services
         public async Task<ActorDetail> ActorDetailAsync(int id)
         {
             //Step 1: Setup a default return object
-            ActorDetail actorDetail = new();
+            ActorDetail actorDetail = new ActorDetail();
 
             //Step 2: Assemble the full request uri string
             var query = $"{_appSettings.TMDBSettings.BaseUrl}/person/{id}";
@@ -90,7 +90,7 @@ namespace WatchList.Services
         public async Task<MovieSearch> MovieSearchAsync(MovieCategory category, int count)
         {
             //Step 1: Setup a default instance of WatchList
-            MovieSearch movieSearch = new();
+            MovieSearch movieSearch = new MovieSearch();
 
             //Step 2: Assemble the full request uri string
             var query = $"{_appSettings.TMDBSettings.BaseUrl}/movie/{category}";
@@ -114,7 +114,7 @@ namespace WatchList.Services
                 using var responseStream = await response.Content.ReadAsStreamAsync();
                 movieSearch = (MovieSearch)dcjs.ReadObject(responseStream);
                 movieSearch.results = movieSearch.results.Take(count).ToArray();
-                movieSearch.results.ToList().ForEach(r => r.poster_path = $"{_appSettings.TMDBSettings.BaseImagePath}/{_appSettings.WatchListSettings.DefaultPosterSize}/{r.poster_path}");
+                movieSearch.results.ToList().ForEach(r => r.poster_path = $"{_appSettings.TMDBSettings.BaseImagePath}/" + "{_appSettings.WatchListSettings.DefaultPosterSize}/{r.poster_path}");
             }
 
             return movieSearch;

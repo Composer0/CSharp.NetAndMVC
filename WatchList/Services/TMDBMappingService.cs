@@ -1,8 +1,10 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WatchList.Data;
 using WatchList.Enums;
 using WatchList.Models.Database;
 using WatchList.Models.Settings;
@@ -16,8 +18,11 @@ namespace WatchList.Services
         private AppSettings _appSettings;
         private readonly IImageService _imageService;
 
-
-
+        public TMDBMappingService(IOptions<AppSettings> appSettings, IImageService imageService)
+        {
+            _appSettings = appSettings.Value;
+            _imageService = imageService;
+        }
         public async Task<Movie> MapMovieDetailAsync(MovieDetail movie)
         {
             Movie newMovie = null;   

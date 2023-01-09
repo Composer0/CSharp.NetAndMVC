@@ -29,16 +29,17 @@ namespace WatchList.Services
 
         public async Task ManageDataAsync()
         {
-            await UpdataDatabaseAsync();
+            //await UpdataDatabaseAsync();
+            await _dbContext.Database.MigrateAsync();
             await SeedRolesAsync();
             await SeedUsersAsync();
             await SeedCollection();
         }
 
-        private async Task UpdataDatabaseAsync()
-        {
-            await _dbContext.Database.MigrateAsync();
-        }
+        //private async Task UpdataDatabaseAsync()
+        //{
+        //    await _dbContext.Database.MigrateAsync();
+        //}
 
         private async Task SeedRolesAsync() //adds roles to users.
         {
