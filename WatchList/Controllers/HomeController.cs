@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WatchList.Data;
 using WatchList.Enums;
 using WatchList.Models;
+using WatchList.Models.TMDB;
 using WatchList.Models.ViewModels;
 using WatchList.Services;
 using WatchList.Services.Interfaces;
@@ -31,6 +32,18 @@ namespace WatchList.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var movieSearch = new MovieSearch();
+            movieSearch.results = new MovieSearchResult[5];
+
+            for (int i = 0; i < movieSearch.results.Length; i++)
+            {
+                movieSearch.results[i] = new MovieSearchResult
+                {
+                    id = i + 1,
+                    title = "Movie " + (i + 1)
+                };
+            }
+
             const int count = 16; //pulls 16 records for each category.
             var data = new LandingPageVM()
             {
