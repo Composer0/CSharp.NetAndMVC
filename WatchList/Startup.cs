@@ -43,15 +43,16 @@ namespace WatchList
 
             services.AddControllersWithViews();
 
+
+
+            services.AddHttpClient();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-
-            services.AddTransient<SeedService>();
-            services.AddHttpClient();
             services.AddSingleton<IImageService, BasicImageService>();
             services.AddScoped<IRemoteMovieService, TMDBMovieService>();
             services.AddScoped<IDataMappingService, TMDBMappingService>();
 
+            services.AddTransient<SeedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
