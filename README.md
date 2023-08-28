@@ -5,4 +5,4 @@ Learned how to use the MVC design model and apply it to my writing in C#. My fir
 
 https://csharpstarterapps-production.up.railway.app/
 
-This application uses the MVC design model and applied it to my writing in C#. These projects primarily operate using 'For' loops to filter through the data to check and modify the values. Within this applciation is Palindrome Checker, FizzBuzz Finder, and my Loan Calculator. Web app was published on the Microsoft Azure hosting service.
+This application uses the MVC design model and applied it to my writing in C#. These projects primarily operate using 'For' loops to filter through the data to check and modify the values. Within this applciation is Palindrome Checker, FizzBuzz Finder, and my Loan Calculator.
