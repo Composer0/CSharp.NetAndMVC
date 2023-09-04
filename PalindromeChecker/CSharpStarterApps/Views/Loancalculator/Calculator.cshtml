@@ -51,14 +51,14 @@
             <p>Your Monthly Payments</p>
         </div>
         <p id="payment">
-            @Model.Payment.ToString("C")
+            @item.Payment.ToString("C", new System.Globalization.CultureInfo("en-US"))
         </p>
         <div class="row">
             <div class="col-6">
                 <label class="text-start">Total Principal</label>
             </div>
             <div class="col-6 text-end" id="totalPrincipal">
-               @Model.LoanAmount.ToString("C")
+               @Model.LoanAmount.ToString("C", new System.Globalization.CultureInfo("en-US"))
             </div>
         </div>
         <div class="row">
@@ -66,7 +66,7 @@
                 <label class="text-start">Total Interest</label>
             </div>
             <div class="col-6 text-end" id="totalInterest">
-                    @Model.TotalInterest.ToString("C")
+                    @Model.TotalInterest.ToString("C", new System.Globalization.CultureInfo("en-US"))
             </div>
         </div>
         <div class="row">
@@ -74,7 +74,7 @@
                 <label class="text-start">Total Cost</label>
             </div>
             <div class="col-6 text-end" id="totalCost">
-                @Model.TotalCost.ToString("C")
+                @Model.TotalCost.ToString("C", new System.Globalization.CultureInfo("en-US"))
             </div>
         </div>
     </div>
@@ -99,12 +99,12 @@
                     {
                         <tr>
                             <td>@item.Month</td>
-                            <td>@item.Payment.ToString("C")</td>
+                            <td>@item.Payment.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
                             @*C turns the ToString to a currency.*@
-                            <td>@item.MonthlyInterest.ToString("C")</td>
-                            <td>@item.MonthlyPrincipal.ToString("C")</td>
-                            <td>@item.TotalInterest.ToString("C")</td>
-                            <td>@item.Balance.ToString("C")</td>
+                            <td>@item.MonthlyInterest.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                            <td>@item.MonthlyPrincipal.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                            <td>@item.TotalInterest.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                            <td>@item.Balance.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
                         </tr>
                     }
                 </tbody>
